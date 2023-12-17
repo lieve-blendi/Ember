@@ -115,7 +115,7 @@ function LoadEmber()
                 end
                 
                 -- check for "file:" icon (this literally only exists because of creative13 wanting his icon while the mod was disabled)
-                if modinfo.icon:sub(1,5) == "file:" then
+                if type(modinfo.icon) == "string" and modinfo.icon:sub(1,5) == "file:" then
                     local path = modinfo.icon:sub(6)
                     local icon = love.graphics.newImage("Mods/" .. modpath .. "/" .. path)
                     local texid = "modicon:" .. modinfo.name
