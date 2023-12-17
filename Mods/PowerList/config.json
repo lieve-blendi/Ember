@@ -1,0 +1,8 @@
+{
+    "name": "PowerList",
+    "desc": "A powerful mod & API list.",
+    "icon": "mod:PowerListIcon",
+    "version": "v1.9.0",
+
+    "api": ["EmberAPI"]
+}

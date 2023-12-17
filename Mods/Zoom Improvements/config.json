@@ -1,0 +1,8 @@
+{
+    "name": "Zoom Improvements",
+    "desc": "Improves the zooming functions & capabilities!",
+    "icon": "zoomin",
+    "version": "v1.1.0",
+
+    "api": ["any"]
+}
