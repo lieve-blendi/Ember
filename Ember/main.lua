@@ -7,7 +7,7 @@ function LoadEmber()
     
     Ember.GameVersion = "2.0.0tb1"
     
-    Ember.version = "0.0.4"
+    Ember.version = "0.0.5"
     
     versiontxt = (versiontxt or "") .. "\n#ffffffEmber Version #ff7b00_e81f00" .. Ember.version
     
