@@ -4,14 +4,14 @@ Timer.times = {}
 Timer.events = {}
 
 function Timer.Update(dt)
-    for i = 1, #Timer.events do
+    for i = #Timer.events,1,-1 do
         local event = Timer.events[i]
 
         if event[1] == "timeout" then -- Timeout
             if love.timer.getTime() > event[2] then
                 event[3]()
                 
-                Timer.events[i] = nil
+                table.remove(Timer.events, i)
             end
         else -- Interval
             if love.timer.getTime() > event[2] then
