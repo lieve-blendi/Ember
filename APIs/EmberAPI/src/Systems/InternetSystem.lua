@@ -23,7 +23,7 @@ function Internet.HTTPGet(adress, redirect)
 end
 
 function Internet.HTTPDownload(adress, file, callback, redirect)
-    local co = coroutine.create(function ()
+    local co = coroutine.create(function () -- should probably use love.thread instead of coroutines but i'll do that later
         local result = Internet:HttpGET(adress, redirect).response[1]
         love.filesystem.write(file, result)
         callback(result)

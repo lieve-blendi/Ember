@@ -55,7 +55,7 @@ function Timer.Str(seconds)
     local Result = math.floor(seconds*100)/100 .. "s"
     
     if (seconds < 1) then Result = math.floor(seconds*1000 *100)/100 .. "ms" end
-    if (seconds < 0.005) then Result = math.floor(seconds*1000000 *100)/100 .. "μ" end
+    if (seconds < 0.005) then Result = math.floor(seconds*1000000 *100)/100 .. "μs" end
     if (seconds < 0.000002) then Result = math.floor(seconds*1000000000 *100)/100 .. "ns" end
 
     return Result

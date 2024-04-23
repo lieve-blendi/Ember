@@ -79,29 +79,33 @@ function Cell.CreateCell(title, description, texture, options)
         desc = description or "No description available",
     })
 
-    Cell.destroyers[id] = options.isDestroyer
-    Cell.idMaps[id] = options.maptoID
-    Cell.stopOptimization[id] = options.shouldStopOptimization
-    Cell.nextCells[id] = options.bendNextCells
-    Cell.toGenerates[id] = options.transformWhenGenerated
-    Cell.transparent[id] = options.isTransparent
+    -- just realized how much is unimplemented here, will update later
+
+    -- Cell.destroyers[id] = options.isDestroyer
+    MergeIntoInfo("isdestroyer", {[id] = options.isDestroyer})
+    Cell.idMaps[id] = options.maptoID -- unimplemented
+    Cell.stopOptimization[id] = options.shouldStopOptimization -- unimplemented
+    Cell.nextCells[id] = options.bendNextCells -- unimplemented
+    Cell.toGenerates[id] = options.transformWhenGenerated -- unimplemented
+    Cell.transparent[id] = options.isTransparent -- unimplemented
     Cell.unbreakable[id] = options.unbreakability
-    Cell.onPlace[id] = options.whenPlaced
+    Cell.onPlace[id] = options.whenPlaced -- unimplemented
     Cell.whenSelected[id] = options.whenSelected
     Cell.nonexistant[id] = options.isNonexistant
-    Cell.idConversion[id] = options.ChunkId
+    -- Cell.idConversion[id] = options.ChunkId
+    MergeIntoInfo("chunkid", {[id] = options.ChunkId})
     Cell.custompush[id] = options.push
-    Cell.onSetCell[id] = options.whenSet
-    Cell.onCellDraw[id] = options.whenRendered
-    Cell.whenRotated[id] = options.whenRotated
-    Cell.acidic[id] = options.isAcidic
-    Cell.whenClicked[id] = options.whenClicked
-    Cell.specialTypes[id] = options.specialType
+    Cell.onSetCell[id] = options.whenSet -- unimplemented
+    Cell.onCellDraw[id] = options.whenRendered -- unimplemented
+    Cell.whenRotated[id] = options.whenRotated -- unimplemented
+    Cell.acidic[id] = options.isAcidic -- unimplemented
+    Cell.whenClicked[id] = options.whenClicked -- unimplemented
+    Cell.specialTypes[id] = options.specialType -- kinda implemented
     Cell.layer[id] = options.layer
-    Cell.customprepush[id] = options.prepush
-    Cell.defaultVars[id] = options.defaultVars
-    Cell.copyVars[id] = options.copyVars
-    Cell.dynamicTexture[id] = options.dynamicTexture
+    Cell.customprepush[id] = options.prepush -- unimplemented
+    Cell.defaultVars[id] = options.defaultVars -- unimplemented
+    Cell.copyVars[id] = options.copyVars -- unimplemented
+    Cell.dynamicTexture[id] = options.dynamicTexture -- unimplemented
 
     if options.specialType == "tool" then
         MergeIntoInfo("istool",{[id]=true})
