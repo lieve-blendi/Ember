@@ -84,10 +84,11 @@ function Cell.CreateCell(title, description, texture, options)
     -- Cell.destroyers[id] = options.isDestroyer
     MergeIntoInfo("isdestroyer", {[id] = options.isDestroyer})
     Cell.idMaps[id] = options.maptoID -- unimplemented
-    Cell.stopOptimization[id] = options.shouldStopOptimization -- unimplemented
+    Cell.stopOptimization[id] = options.shouldStopOptimization
     Cell.nextCells[id] = options.bendNextCells -- unimplemented
-    Cell.toGenerates[id] = options.transformWhenGenerated -- unimplemented
-    Cell.transparent[id] = options.isTransparent -- unimplemented
+    -- Cell.toGenerates[id] = options.transformWhenGenerated
+    MergeIntoInfo("togenerate",{[id]=options.transformWhenGenerated}) -- NEEDS TO BE A FUNCTION!!!
+    -- Cell.transparent[id] = options.isTransparent -- unneeded since vanilla checks transparency by doing isnonexistant or isdestroyer
     Cell.unbreakable[id] = options.unbreakability
     Cell.onPlace[id] = options.whenPlaced -- unimplemented
     Cell.whenSelected[id] = options.whenSelected
@@ -95,7 +96,7 @@ function Cell.CreateCell(title, description, texture, options)
     -- Cell.idConversion[id] = options.ChunkId
     MergeIntoInfo("chunkid", {[id] = options.ChunkId})
     Cell.custompush[id] = options.push
-    Cell.onSetCell[id] = options.whenSet -- unimplemented
+    Cell.onSetCell[id] = options.whenSet
     Cell.onCellDraw[id] = options.whenRendered -- unimplemented
     Cell.whenRotated[id] = options.whenRotated -- unimplemented
     Cell.acidic[id] = options.isAcidic -- unimplemented
@@ -195,6 +196,17 @@ function Cell.CreateCell(title, description, texture, options)
 end
 
 -- TODO: injection for handling functions and IsX/GetLayer
+
+StopsOptimize = Ember.Needle.InjectFunc(StopsOptimize, function(fn, cell,dir,x,y,vars)
+    return fn(cell,dir,x,y,vars) or Cell.stopOptimization[cell.id]
+end)
+
+SetCell = Ember.Needle.InjectFunc(SetCell, function(fn, x,y,cell,z)
+    fn(x,y,cell,z)
+    if type(Cell.onSetCell[cell.id]) == "function" then
+        Cell.onSetCell[cell.id](x,y,cell,z)
+    end
+end)
 
 HandlePush = Ember.Needle.InjectFunc(HandlePush, function (fn, force,cell,dir,x,y,vars)
     local id = cell.id
